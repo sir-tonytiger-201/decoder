@@ -22,25 +22,25 @@
 
 <div class="numberbar">
   <div>Triangular Numbers 
-    <button on:click={() => {
+    <button class="border-2 bg-gray-200 px-2 hover:scale-110 " on:click={() => {
     for (const val in triangularHighlight) {triangularHighlight[val] = false}
   }}>clear</button>
-  <button on:click={() => {
+  <button class="border-2 bg-gray-200 px-2 hover:scale-110" on:click={() => {
     for (const val in triangularHighlight) {triangularHighlight[val] = true}
   }}>select all</button>
    
   </div>
-  <table>
+  <table class="border-solid border-2">
     <thead>
-      <tr>
+      <tr class="border-solid border-2">
         {#each numberArray as triangularNumber, i}
-          <td>{i+1}</td>
+          <td class="border-solid border-2">{i+1}</td>
         {/each}
       
 
 </tr>
   {#each numberArray as triangularNumber, i}
-  <td>
+  <td class="border-2 px-2">
     <a href="" bind:innerHTML={triangularNumber} contenteditable 
     class:triangularhighlight={triangularHighlight[triangularNumber]}
     on:click|preventDefault={() => toggleHighlight(triangularNumber)}>

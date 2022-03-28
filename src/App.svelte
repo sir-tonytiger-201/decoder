@@ -1,6 +1,6 @@
 <script>
 	import Decoder from "./pages/Decoder.svelte";
-
+	const useTailwind = false;
 	
 </script>
 
@@ -17,44 +17,12 @@
 
 <main>
 
-
-
 	
 </main>
 
-<style>
-	main {
-		text-align: center;
-		padding: 0;
-		max-width: 240px;
-		margin: 0;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 3em;
-		font-weight: 100;
-		margin: auto;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-
-		.highlight {
-		color: yellow;
-		background-color: red;
-		font-style: oblique;
-	}
-
-	div {
-		padding-top: 0px;
-		margin-top: 0px;
-
-		background-color: red;
-	}
+<style global lang="postcss">
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
 </style>
 

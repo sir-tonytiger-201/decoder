@@ -316,7 +316,7 @@
 			{cipherString()}
 		</center>
 	</div>
-	<div class="decoded" transition:scale={{ duration: 1000, easing: cubicOut }}>
+	<div class="decoded text-black py-80 px-3 " transition:scale={{ duration: 1000, easing: cubicOut }}>
 		<!-- 	<p>{text}</p>
 	<p>
 		{JSON.stringify(currentCipher)}
@@ -401,6 +401,7 @@
 	.numberbox {
 		width: 3em;
 	}
+
 	
 	input {
 		width: 9em;
