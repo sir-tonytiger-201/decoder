@@ -22,10 +22,10 @@
 
 <div class="numberbar">
   <div>Triangular Numbers 
-    <button class="border-2 bg-gray-200 px-2 hover:scale-110 " on:click={() => {
+    <button class="border-2 rounded-xl my-0.5 bg-gray-200 px-2 hover:scale-110 " on:click={() => {
     for (const val in triangularHighlight) {triangularHighlight[val] = false}
   }}>clear</button>
-  <button class="border-2 bg-gray-200 px-2 hover:scale-110" on:click={() => {
+  <button class="border-2 rounded-xl my-0.5 bg-gray-200 px-2 hover:scale-110" on:click={() => {
     for (const val in triangularHighlight) {triangularHighlight[val] = true}
   }}>select all</button>
    

@@ -249,7 +249,7 @@
 					placeholder="quick decode"
 				/>
 				<input type="text" readonly class="numberbox" bind:value={quickDecode} />
-				<button on:click={() => (text = "")}>Clear text</button>
+				<button class="bg-gray-200 px-1 py-0.5 rounded-xl" on:click={() => (text = "")}>Clear text</button>
 				<input
 					type="text"
 					use:shortcut={{
@@ -259,15 +259,15 @@
 					bind:value={numberSearch}
 					placeholder="number search"
 				/>
-				<button on:click={() => addToHighlights(numberSearch)}>go</button>
-				<button on:click={() => toggleAndUpdate("onlyShowHighlighted")}>
+				<button class="bg-gray-200 px-1 py-0.5 rounded-xl" on:click={() => addToHighlights(numberSearch)}>go</button>
+				<button class="bg-gray-200 px-1 py-0.5 rounded-xl" on:click={() => toggleAndUpdate("onlyShowHighlighted")}>
 					show
 					{#if params.onlyShowHighlighted} all {:else} only highlighted {/if}
 				</button>
-				<button on:click={() => toggleAndUpdate("showValues")}>
+				<button class="bg-gray-200 px-1 py-0.5 rounded-xl" on:click={() => toggleAndUpdate("showValues")}>
 					{#if params.showValues} hide {:else} show {/if} values
 				</button>
-				<button on:click={() => toggleAndUpdate("ignoreTrivial")}>
+				<button class="bg-gray-200 px-2 py-1 rounded-xl" on:click={() => toggleAndUpdate("ignoreTrivial")}>
 					{#if params.ignoreTrivial} show {:else} hide {/if} trivial
 				</button>
 				<select
@@ -281,30 +281,30 @@
 					{/each}
 				</select>
 				<!-- Current Cipher: {currentCipher.cipherName} -->
-				<button on:click={displayCipher}>View Cipher</button>
-				<button
+				<button class="bg-gray-200 px-1 py-0.5 rounded-xl" on:click={displayCipher}>View Cipher</button>
+				<button class="bg-gray-200 px-1 py-0.5 rounded-xl"
 					on:click={cycleBackward}
 					use:shortcut={{ shift: true, code: "Tab", callback: cycleBackward }}
 					>Previous Cipher</button
 				>
-				<button
+				<button class="bg-gray-200 px-1 py-0.5 rounded-xl"
 					on:click={cycleForward}
 					use:shortcut={{ code: "Tab", callback: cycleForward }}
 					>Next Cipher</button
 				>
 				<input
-					type="text"
+					type="text"gray
 					bind:value={numberLookup}
 					class="numberbox"
 					placeholder="number lookup"
 				/>
-				<button
+				<button class="bg-gray-200 px-1 py-0.5 rounded-xl"
 					on:click={() =>
 						window.open(
 							`https://www.reddit.com/r/GeometersOfHistory/wiki/spellcomponents/${numberLookup}`
 						)}>go</button
 				>
-				<button>Sorted Results</button>
+				<button class="bg-gray-200 px-1 py-0.5 rounded-xl">Sorted Results</button>
 			</nav>
 
 			<TextInput
