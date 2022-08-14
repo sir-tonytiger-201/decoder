@@ -54,7 +54,6 @@ The Tab key will cycle through ciphers, or use arrow buttons."
     box-shadow: 10px 10px 20px rgb(224, 93, 174);
     padding: 10em;
     height: 9rem;
-
   }
 
   .focussed {

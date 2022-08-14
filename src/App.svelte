@@ -35,6 +35,7 @@
 
 	nav {
 		clear: left;
+		padding-bottom: 1em;
 	}
 
 	@media (min-width: 640px) {
