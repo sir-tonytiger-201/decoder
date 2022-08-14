@@ -1,7 +1,17 @@
 <script>
   import { fibonacciNumbers } from "../js/store";
+  let fibonacciArray = [];
+  export let fibonacciHighlight = {};
+
+
+  $fibonacciNumbers.forEach(m => {
+    fibonacciArray.push(m);
+    fibonacciHighlight[m] = false;
+  }); 
   
-  export let fibonacciHighlight = {}
+  
+
+
   
   
     const toggleHighlight = num => {
@@ -12,12 +22,12 @@
 
 <div class="numberbar">
   <div>Fibonnaci Numbers 
-    <!-- <button on:click={() => {
+    <button on:click={() => {
     for (const val in fibonacciHighlight) {fibonacciHighlight[val] = false}
   }}>clear</button>
   <button on:click={() => {
     for (const val in fibonacciHighlight) {fibonacciHighlight[val] = true}
-  }}>select all</button> -->
+  }}>select all</button>
    
   </div>
   <table>

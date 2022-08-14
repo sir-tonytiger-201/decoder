@@ -629,5 +629,5 @@ const cipherList = [
 
 const reducedCipherList = cipherList.filter((m, i) => i < 4 );
 
-//export default cipherList;
-export default reducedCipherList;
+export default cipherList;
+//export default reducedCipherList;
