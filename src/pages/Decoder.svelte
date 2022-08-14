@@ -467,7 +467,7 @@
 <style>
 	main {
 		text-align: center;
-		max-width: 240px;
+		/* max-width: 640px; */
 		margin: 0px;
 	}
 
