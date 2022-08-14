@@ -1,5 +1,6 @@
 <script>
 	import Decoder from "./pages/Decoder.svelte";
+	export let focussed;
 </script>
 
 <!-- {"cipherName":"English Ordinal",
@@ -12,7 +13,7 @@
 
 <nav>
 	<h5>Decoder by Tony 201</h5>
-	<Decoder />
+	<Decoder bind:focussed />
 </nav>
 
 <main />

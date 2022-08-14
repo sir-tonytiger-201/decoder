@@ -15,6 +15,7 @@
 	let triangularHighlight = {};
 	let fibonacciHighlight = {};
 	let quickWord = "";
+	export let focussed = true;
 	const params = {
 		ignoreTrivial: false,
 		onlyShowHighlighted: false,
@@ -106,6 +107,7 @@
 		} else {
 			selectedCipher = cipherList.length - 1;
 		}
+		focussed = false;
 	};
 	const cycleForward = () => {
 		if (selectedCipher < cipherList.length - 1) {
@@ -113,6 +115,7 @@
 		} else {
 			selectedCipher = 0;
 		}
+		focussed = false;
 	};
 
 	const valueOf = (c) => {
@@ -312,7 +315,6 @@
 <main>
 	<div class="fixed">
 		<center>
-			
 			<TriangularNumbers bind:triangularHighlight />
 			<FibonacciNumbers bind:fibonacciHighlight />
 			<nav>
@@ -436,6 +438,7 @@
 				{shortcut}
 				label="Text to decode"
 				bind:value={text}
+				bind:focussed
 				multiline={true}
 			/>
 
@@ -451,7 +454,7 @@
 		{JSON.stringify(currentCipher)}
 	</p> -->
 		{#key selectedCipher}
-			{#key triangularHighlight,fibonacciHighlight}
+			{#key (triangularHighlight, fibonacciHighlight)}
 				{@html decode(text).replace(/<br><br>/g, "<br>")}
 			{/key}
 		{/key}
@@ -470,8 +473,8 @@
 
 	select {
 		color: yellow;
-		background-color:blue;
-		box-shadow: 9px 7px 8px rgba(200, 14, 224, 0.863)
+		background-color: blue;
+		box-shadow: 9px 7px 8px rgba(200, 14, 224, 0.863);
 	}
 
 	h1 {
