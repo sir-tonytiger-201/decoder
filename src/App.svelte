@@ -14,11 +14,16 @@
 <nav>
 	<h5>Decoder by Tony 201</h5>
 	<Decoder bind:focussed />
+	<a href='https://hangulkeyboard.vercel.app/'>Other site: hangul keyboard</a>
 </nav>
 
 <main />
 
 <style>
+	a, span {
+		float: right;
+		
+	}
 	h5 {
 		color: blue;
 		text-shadow: 4px 4px 2px rgb(212, 27, 172);
@@ -27,6 +32,7 @@
 		vertical-align: top;
 	}
 	main {
+		clear: right;
 		text-align: center;
 		padding: 0;
 		max-width: 240px;
@@ -34,7 +40,7 @@
 	}
 
 	nav {
-		clear: left;
+		clear: right;
 		padding-bottom: 1em;
 	}
 
@@ -51,6 +57,7 @@
 	}
 
 	div {
+		clear: both;
 		padding-top: 0px;
 		margin-top: 0px;
 	}
