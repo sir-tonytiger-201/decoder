@@ -13,7 +13,6 @@
 <label for="">
   <span>{label}</span>
   {#if multiline}
-  
     <textarea
       autofocus
       bind:value
@@ -21,15 +20,14 @@
 
 Left-click to expand/contract. Window will automatically contract when mouse moves outside.
 
-Use arrow keys or buttons to cycle through ciphers."
+Use tab key or arrow buttons to cycle through ciphers."
       transition:scale={{ duration: 1000, easing: cubicOut }}
       on:click={() => (focussed = !focussed)}
       spellcheck={false}
       on:mouseleave={() => (focussed = false)}
-      class:focussed 
+      class:focussed
       style="padding: 1em;"
     />
-
   {:else}
     <input type="text" bind:value />
   {/if}
