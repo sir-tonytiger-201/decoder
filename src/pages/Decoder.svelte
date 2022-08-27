@@ -10,11 +10,15 @@
 	import Clipboard from "../components/Clipboard.svelte";
 
 	let text = "";
+	let line;
 	let selectedCipher = 0;
 	let selected = 0;
 	let triangularHighlight = {};
 	let fibonacciHighlight = {};
 	let quickWord = "";
+	let expandReduction = true;
+	let hovering = false;
+	$: console.log("expandReduction", expandReduction)
 	export let focussed = true;
 	const params = {
 		ignoreTrivial: false,
@@ -179,6 +183,26 @@
 		}
 	};
 
+	const changeColor = (text, customClass = "blue") => {
+		let [word, value] =
+			typeof text === "string" ? text.split(" ") : [text, 0];
+		if (!params.showValues) text = word;
+		if (typeof word === "number") word = word.toString();
+		if (
+			params.ignoreTrivial &&
+			(trivialList.includes(simplify(word.toLowerCase())) ||
+				simplify(word).length < 3)
+		) {
+			return params.onlyShowHighlighted ? "" : text;
+		} else {
+			if (numberInfo[value]) {
+				return `<a href='${numberInfo[value]}' style='color:${customClass}' target="_blank">${text}</a>`;
+			} else {
+				return `<span style='font-weight:bold; color:${customClass}'>${text}</span>`;
+			}
+		}
+	};
+
 	const triangleHighlight = (text) => {
 		const word = simplify(text.split(" ")[0]);
 		if (!params.showValues) text = word;
@@ -199,7 +223,7 @@
 			val += Number(c);
 		}
 
-		if (val.toString().length > 1) val = simpleNumericReduction(val);
+		//if (val.toString().length > 1) val = simpleNumericReduction(val);
 		return val;
 	};
 
@@ -207,7 +231,6 @@
 		let decoded = "";
 		let combinedValue = { num: 0, html: "" };
 		let val = 0;
-		let reducedNumerical = "";
 
 		for (const line of t.split("\n")) {
 			combinedValue.num = 0;
@@ -224,7 +247,7 @@
 					);
 					console.log("returnedValue =", returnedValue);
 					if (returnedValue) {
-						decoded += returnedValue + " ";
+						decoded += returnedValue + ` `;
 						//console.log("decoded =",decoded)
 					} else {
 						combinedValue.num -= val;
@@ -233,30 +256,30 @@
 					//val = highlight(val);
 					const returnedValue = highlight(word + " " + val);
 					if (returnedValue) {
-						decoded += returnedValue + " ";
+						decoded += returnedValue + ` `;
 					} else {
 						combinedValue.num -= val;
 					}
 				} else if (triangularHighlight[val] === true) {
 					const returnedValue = triangleHighlight(word + " " + val);
 					if (returnedValue) {
-						decoded += returnedValue + " ";
+						decoded += returnedValue + ` `;
 					} else {
 						combinedValue.num -= val;
 					}
 				} else if (fibonacciHighlight[val] === true) {
 					const returnedValue = triangleHighlight(word + " " + val);
 					if (returnedValue) {
-						decoded += returnedValue + " ";
+						decoded += returnedValue + ` `;
 					} else {
 						combinedValue.num -= val;
 					}
 				} else {
 					if (!params.onlyShowHighlighted) {
 						if (params.showValues) {
-							decoded += word + " " + val + " ";
+							decoded += word + ` ` + val + ` `;
 						} else {
-							decoded += word + " ";
+							decoded += word + ` `;
 						}
 					} else {
 						combinedValue.num -= val;
@@ -278,18 +301,34 @@
 			}
 
 			if (decoded.length > 0) {
-				reducedNumerical = simpleNumericReduction(combinedValue.num);
+				let reducedNumerical = [];
+
+				let simplesum;
+				simplesum = combinedValue.num;
+				do {
+					simplesum = simpleNumericReduction(simplesum);
+					reducedNumerical.push(simplesum);
+					console.log(reducedNumerical);
+				} while (simplesum > 9);
+
 				decoded +=
 					combinedValue.num > 0 && params.showValues
-						? "(" + combinedValue.html + ") "
-						: "<br>";
+						? `(${combinedValue.html}) `
+						: `<br>`;
 				decoded +=
-					reducedNumerical > 0 && params.showValues
-						? "[" + reducedNumerical + "]<br><br>"
-						: "<br>";
+					simplesum && params.showValues
+						? `<span style="cursor:pointer" >` +
+						changeColor("[", "purple") +
+						  (expandReduction
+								? String(reducedNumerical).replace(/,/g,"→")
+								: reducedNumerical[
+										reducedNumerical.length - 1
+								  ]) +
+						  changeColor("]", "purple") +
+						  `</span><br><br>`
+						: `<br>`;
 			}
 		}
-
 		return decoded;
 	};
 
@@ -381,8 +420,7 @@
 				<button
 					on:click={cycleBackward}
 					use:shortcut={{
-						shift: true,
-						code: "Tab",
+						code: "ArrowLeft",
 						callback: cycleBackward,
 					}}
 				>
@@ -402,7 +440,7 @@
 				</button>
 				<button
 					on:click={cycleForward}
-					use:shortcut={{ code: "Tab", callback: cycleForward }}
+					use:shortcut={{ code: "ArrowRight", callback: cycleForward }}
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -454,8 +492,10 @@
 		{JSON.stringify(currentCipher)}
 	</p> -->
 		{#key selectedCipher}
-			{#key (triangularHighlight, fibonacciHighlight)}
+			{#key (triangularHighlight, fibonacciHighlight, expandReduction)}
+				<div on:click={() => expandReduction = !expandReduction} >
 				{@html decode(text).replace(/<br><br>/g, "<br>")}
+			</div>
 			{/key}
 		{/key}
 		<!-- 	{#each cipherList as c}
@@ -534,6 +574,10 @@
 
 	.numberbox {
 		width: 3em;
+	}
+
+	.hover {
+		cursor:pointer;
 	}
 
 	input {

@@ -21,7 +21,7 @@
 
 Left-click to expand/contract. Window will automatically contract when mouse moves outside.
 
-The Tab key will cycle through ciphers, or use arrow buttons."
+Use arrow keys or buttons to cycle through ciphers."
       transition:scale={{ duration: 1000, easing: cubicOut }}
       on:click={() => (focussed = !focussed)}
       spellcheck={false}
