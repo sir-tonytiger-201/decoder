@@ -14,7 +14,7 @@
 <nav>
 	<h5>Decoder by Tony 201</h5>
 	<Decoder bind:focussed />
-	<a href='https://hangulkeyboard.vercel.app/'>Other site: hangul keyboard</a>
+	<a href='https://hangulkeyboard.vercel.app/'>My other web app: 한글 Keyboard</a>
 </nav>
 
 <main />
