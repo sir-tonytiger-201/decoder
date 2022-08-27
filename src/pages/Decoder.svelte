@@ -18,7 +18,7 @@
 	let quickWord = "";
 	let expandReduction = true;
 	let hovering = false;
-	$: console.log("expandReduction", expandReduction)
+	$: console.log("expandReduction", expandReduction);
 	export let focussed = true;
 	const params = {
 		ignoreTrivial: false,
@@ -318,9 +318,9 @@
 				decoded +=
 					simplesum && params.showValues
 						? `<span style="cursor:pointer" >` +
-						changeColor("[", "purple") +
+						  changeColor("[", "purple") +
 						  (expandReduction
-								? String(reducedNumerical).replace(/,/g,"→")
+								? String(reducedNumerical).replace(/,/g, "→")
 								: reducedNumerical[
 										reducedNumerical.length - 1
 								  ]) +
@@ -420,7 +420,8 @@
 				<button
 					on:click={cycleBackward}
 					use:shortcut={{
-						code: "ArrowLeft",
+						shift: true,
+						code: "Tab",
 						callback: cycleBackward,
 					}}
 				>
@@ -440,7 +441,7 @@
 				</button>
 				<button
 					on:click={cycleForward}
-					use:shortcut={{ code: "ArrowRight", callback: cycleForward }}
+					use:shortcut={{ code: "Tab", callback: cycleForward }}
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -493,9 +494,9 @@
 	</p> -->
 		{#key selectedCipher}
 			{#key (triangularHighlight, fibonacciHighlight, expandReduction)}
-				<div on:click={() => expandReduction = !expandReduction} >
-				{@html decode(text).replace(/<br><br>/g, "<br>")}
-			</div>
+				<div on:click={() => (expandReduction = !expandReduction)}>
+					{@html decode(text).replace(/<br><br>/g, "<br>")}
+				</div>
 			{/key}
 		{/key}
 		<!-- 	{#each cipherList as c}
@@ -577,7 +578,7 @@
 	}
 
 	.hover {
-		cursor:pointer;
+		cursor: pointer;
 	}
 
 	input {
