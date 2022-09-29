@@ -493,7 +493,8 @@
 		{JSON.stringify(currentCipher)}
 	</p> -->
 		{#key selectedCipher}
-			{#key (triangularHighlight, fibonacciHighlight, expandReduction)}
+			<!-- {#key (triangularHighlight, fibonacciHighlight, expandReduction)} -->
+			{#key (triangularHighlight, fibonacciHighlight)}
 				<div on:click={() => (expandReduction = !expandReduction)}>
 					{@html decode(text).replace(/<br><br>/g, "<br>")}
 				</div>
