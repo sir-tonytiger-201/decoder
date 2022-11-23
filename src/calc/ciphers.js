@@ -628,6 +628,7 @@ const cipherList = [
 ]
 
 const reducedCipherList = cipherList.filter((m, i) => i < 9);
+export const fullCipherList = cipherList;
 
 //export default cipherList;
 export default reducedCipherList;

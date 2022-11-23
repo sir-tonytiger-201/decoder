@@ -1,9 +1,11 @@
 <script>
 	import TextInput from "../components/TextInput.svelte";
 	import cipherList from "../calc/ciphers";
+	import { fullCipherList } from "../calc/ciphers";
 	import { shortcut } from "../js/shortcut";
 	import TriangularNumbers from "./TriangularNumbers.svelte";
 	import FibonacciNumbers from "./FibonacciNumbers.svelte";
+	import Range from  "../components/Range.svelte";
 	import { scale } from "svelte/transition";
 	import { cubicOut } from "svelte/easing";
 	import { triangularNumbers } from "../js/store";
@@ -20,6 +22,7 @@
 	let hovering = false;
 	$: console.log("expandReduction", expandReduction);
 	export let focussed = true;
+	let cipherIndex = 0;
 	const params = {
 		ignoreTrivial: false,
 		onlyShowHighlighted: false,
@@ -30,6 +33,10 @@
 	let numberLookup = "";
 	let numberSearch = "";
 	let customNumberFilter = [];
+
+	let cipherLimit = 9;
+
+	let numberOfCiphers = fullCipherList.length;
 	$: specialNumbers = [33, 38, 42, 47, 48, 74, 83, 84, 120, 137, 201];
 	const numberInfo = {
 		33: "https://www.reddit.com/r/GeometersOfHistory/wiki/spellcomponents/33",
@@ -70,7 +77,7 @@
 		}
 	};
 
-	$: currentCipher = cipherList[selectedCipher];
+	$: currentCipher = fullCipherList[selectedCipher];
 	$: cipherString = () => {
 		if (!currentCipher) return "";
 		let letterValues = {};
@@ -109,12 +116,12 @@
 		if (selectedCipher > 0) {
 			selectedCipher -= 1;
 		} else {
-			selectedCipher = cipherList.length - 1;
+			selectedCipher = cipherLimit - 1;
 		}
 		focussed = false;
 	};
 	const cycleForward = () => {
-		if (selectedCipher < cipherList.length - 1) {
+		if (selectedCipher < cipherLimit - 1) {
 			selectedCipher += 1;
 		} else {
 			selectedCipher = 0;
@@ -409,10 +416,12 @@
 						callback: () => (selectedCipher = 0),
 					}}
 				>
-					{#each cipherList as cipher, i}
+					{#each fullCipherList as cipher, i}
+					{#if (i < cipherLimit) }
 						<option value={i}>
 							{i + 1}: {cipher.cipherName}
 						</option>
+						{/if}
 					{/each}
 				</select>
 				<!-- Current Cipher: {currentCipher.cipherName} -->
@@ -471,6 +480,7 @@
 						)}>go</button
 				>
 				<button disabled={true}>Sorted Results</button>
+				<Range on:change={(e) => cipherLimit = e.detail.value} min={1} bind:value={cipherLimit} id="basic-slider" max={numberOfCiphers}>Number of ciphers: {cipherLimit}</Range>
 			</nav>
 
 			<TextInput
