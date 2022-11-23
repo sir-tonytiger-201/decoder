@@ -55,4 +55,6 @@ Follow the instructions in the previous section for creating a build. This will 
 
 Then go the repo https://github.com/sir-tonytiger-201/sir-tonytiger-201.github.io and switch to the gh-pages branch. Upload the bundle files there.
 
+Here's the tricky and confusing part. Even though the build files come from public/build, they just get uploaded to the build directory, which is not under the public directory anymore. It's at the first subdirectory level of the whole project.
+
 # decoder
