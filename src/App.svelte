@@ -13,8 +13,10 @@
 
 <nav>
 	<h5>Decoder by Tony 201</h5>
+	<a href='https://github.com/sir-tonytiger-201/decoder'>GitHub Page</a>
 	<Decoder bind:focussed />
-	<a href='https://hangulkeyboard.vercel.app/'>My other web app: 한글 Keyboard</a>
+	<a href='https://hangulkeyboard.vercel.app/'
+	>My other web app: 한글 Keyboard</a>
 </nav>
 
 <main />
@@ -22,8 +24,10 @@
 <style>
 	a, span {
 		float: right;
-		
+		margin: 1em;
 	}
+
+
 	h5 {
 		color: blue;
 		text-shadow: 4px 4px 2px rgb(212, 27, 172);
@@ -43,6 +47,8 @@
 		clear: right;
 		padding-bottom: 1em;
 	}
+	
+	
 
 	@media (min-width: 640px) {
 		main {
