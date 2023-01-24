@@ -1,5 +1,7 @@
 *Inspired by [Gematrinator](https://www.gematrinator.com/calculator)
 
+Ciphers come from https://github.com/Alektryon/alektryon.github.io and specifically from https://github.com/Alektryon/alektryon.github.io/blob/main/calc/ciphers.js
+
 ---
 
 # Decoder by sir_tonytiger_201
